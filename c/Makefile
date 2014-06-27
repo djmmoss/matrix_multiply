@@ -1,11 +1,16 @@
 C = gcc
 CFLAGS = -g -Wall -std=c99
 
-mm: mm.o
-	$(CC) $(CFLAGS) -o mm mm.o
+SOURCES=$(wildcard *.c)
+OBJECTS=$(SOURCES:.c=.o)
+EXEC = mm
 
-mm.o: mm.c mm.h
-	$(CC) $(CFLAGS) -c mm.c
+
+EXEC: $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(EXEC)
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	$(RM) mm *.o *~
+	$(RM) $(EXEC) $(OBJECTS)
