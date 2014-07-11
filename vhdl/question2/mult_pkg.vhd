@@ -6,13 +6,12 @@ package mult_pkg is
 
     constant n : integer := 2;
 
-    type t_in_col is array (0 to n) of unsigned(15 downto 0);
-    type t_in_mat is array(0 to n) of t_in_col;
-    type t_out_col is array (0 to n) of unsigned(31 downto 0);
-    type t_out_mat is array(0 to n) of t_out_col;
-    
+    type t_in_vec is array (0 to n) of unsigned(15 downto 0);
+    type t_in_mat is array(0 to n) of t_in_vec;
+    type t_out_vec is array (0 to n) of unsigned(31 downto 0);
+    type t_out_mat is array(0 to n) of t_out_vec;
 
-    function row_col_mul (a : t_in_col; b : t_in_col) return unsigned;
+    function dot_prod (a : t_in_vec; b : t_in_vec) return unsigned;
 
     component mult_top is
         port(
@@ -27,14 +26,14 @@ end package mult_pkg;
 
 package body mult_pkg is
 
-    function row_col_mul (a : t_in_col; b : t_in_col) return unsigned is
+    function dot_prod (a : t_in_vec; b : t_in_vec) return unsigned is
         variable res : unsigned(31 downto 0) := (others =>'0');
         variable i : integer := 0;
-    
+
         begin
             for i in 0 to a'length-1 loop
                 res := res + (a(i)*b(i));
             end loop;
         return res;
-    end row_col_mul;
+    end dot_prod;
 end mult_pkg;

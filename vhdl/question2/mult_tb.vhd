@@ -3,13 +3,6 @@ use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 use work.mult_pkg.all;
 
-Library UNISIM;
-use UNISIM.vcomponents.all;
-
-Library UNIMACRO;
-use UNIMACRO.vcomponents.all;
-
- 
 entity mult_tb is
 end mult_tb;
 
@@ -22,15 +15,12 @@ architecture behave of mult_tb is
     signal r_A      : t_in_mat := (others => (others => (others => '0')));
     signal r_B      : t_in_mat := (others => (others => (others => '0')));
     signal w_RESULT : t_out_mat := (others => (others => (others => '0')));
-    
+
     signal x        : unsigned (15 downto 0) := (others => '0');
     signal y        : unsigned (31 downto 0) := (others => '0');
-    
-    signal s      : integer := 0;
-    signal f      : integer := 0;
-        
+
 begin
- 
+
   MULT_TOP_INST : mult_top
     port map (
         i_CLK   => r_CLK,
@@ -48,7 +38,7 @@ begin
 
   process
   begin
-  
+
     r_RST <= '1';
     wait for c_CLK_PERIOD;
     r_RST <= '0';
@@ -57,7 +47,6 @@ begin
     wait for c_CLK_PERIOD;
     if w_RESULT = ((y+3,y+3,y+3),(y+3,y+3,y+3),(y+3,y+3,y+3)) then
         report "SUCESS";
-        s <= s + 1;
     else
         report "FAILURE";
     end if;
@@ -66,11 +55,10 @@ begin
     wait for c_CLK_PERIOD;
     if w_RESULT = ((y+18,y+18, y+18),(y+18,y+18, y+18),(y+18,y+18, y+18)) then
         report "SUCESS";
-        s <= s + 1;
     else
         report "FAILURE";
     end if;
-     
+
     end process;
-   
+
 end behave;
