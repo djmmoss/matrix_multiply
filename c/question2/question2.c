@@ -1,4 +1,4 @@
-#include "mm.h"
+#include "question2.h"
 
 int main(int argc, const char *argv[])
 {
@@ -18,7 +18,6 @@ int main(int argc, const char *argv[])
     }
 
     // Populate the Arrays
-
     for (i = 0; i < M_SIZE; i++){
         for (j = 0; j < M_SIZE; j++){
             A[i][j] = i*M_SIZE + j;

@@ -3,7 +3,7 @@ CFLAGS = -g -Wall -std=c99
 
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
-EXEC = mm
+EXEC = question1
 
 
 EXEC: $(OBJECTS)
