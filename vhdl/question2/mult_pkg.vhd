@@ -2,16 +2,19 @@ library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
+library ieee_proposed;
+use ieee_proposed.float_pkg.all;
+
 package mult_pkg is
 
     constant n : integer := 2;
 
-    type t_in_vec is array (0 to n) of unsigned(15 downto 0);
+    type t_in_vec is array (0 to n) of float32;
     type t_in_mat is array(0 to n) of t_in_vec;
-    type t_out_vec is array (0 to n) of unsigned(31 downto 0);
+    type t_out_vec is array (0 to n) of float32;
     type t_out_mat is array(0 to n) of t_out_vec;
 
-    function dot_prod (a : t_in_vec; b : t_in_vec) return unsigned;
+    function dot_prod (a : t_in_vec; b : t_in_vec) return float32;
 
     component mult_top is
         port(
@@ -24,10 +27,10 @@ package mult_pkg is
     end component;
 end package mult_pkg;
 
-package body mult_pkg is
 
-    function dot_prod (a : t_in_vec; b : t_in_vec) return unsigned is
-        variable res : unsigned(31 downto 0) := (others =>'0');
+package body mult_pkg is
+    function dot_prod (a : t_in_vec; b : t_in_vec) return float32 is
+        variable res : float32 := (others =>'0');
         variable i : integer := 0;
 
         begin

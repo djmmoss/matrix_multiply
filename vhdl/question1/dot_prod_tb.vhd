@@ -1,7 +1,10 @@
 library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
-use work.mult_pkg.all;
+use work.dot_prod_pkg.all;
+
+library ieee_proposed;
+use ieee_proposed.float_pkg.all;
 
 entity dot_prod_tb is
 end dot_prod_tb;
@@ -14,10 +17,10 @@ architecture behave of dot_prod_tb is
     signal r_RST    : std_logic                 := '0';
     signal r_A      : t_in_vec                  := (others => (others => '0'));
     signal r_B      : t_in_vec                  := (others => (others => '0'));
-    signal w_RESULT : unsigned (31 downto 0)    := (others => '0');
+    signal w_RESULT : float32                   := (others => '0');
 
-    signal x        : unsigned (15 downto 0) := (others => '0');
-    signal y        : unsigned (31 downto 0) := (others => '0');
+    signal x        : float32                   := (others => '0');
+    signal y        : float32                   := (others => '0');
 
 begin
 

@@ -2,14 +2,17 @@ library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
+library ieee_proposed;
+use ieee_proposed.float_pkg.all;
+
 package dot_prod_pkg is
 
-    constant n : integer := 10;
+    constant n : integer := 2;
 
-    type t_in_vec is array (0 to n) of unsigned(15 downto 0);
-    type t_out_vec is array (0 to n) of unsigned(31 downto 0);
+    type t_in_vec is array (0 to n) of float32;
+    type t_out_vec is array (0 to n) of float32;
 
-    function dot_prod (a : t_in_vec; b : t_in_vec) return unsigned;
+    function dot_prod (a : t_in_vec; b : t_in_vec) return float32;
 
     component dot_prod_top is
         port(
@@ -17,15 +20,15 @@ package dot_prod_pkg is
                 i_RST       : in std_logic;
                 i_A         : in t_in_vec;
                 i_B         : in t_in_vec;
-                o_C         : out unsigned(31 downto 0)
+                o_C         : out float32
             );
     end component;
 end package dot_prod_pkg;
 
 package body dot_prod_pkg is
 
-    function dot_prod (a : t_in_vec; b : t_in_vec) return unsigned is
-        variable res : unsigned(31 downto 0) := (others =>'0');
+    function dot_prod (a : t_in_vec; b : t_in_vec) return float32 is
+        variable res : float32 := (others =>'0');
         variable i : integer := 0;
 
         begin

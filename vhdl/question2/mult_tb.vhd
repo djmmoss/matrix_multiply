@@ -3,6 +3,9 @@ use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 use work.mult_pkg.all;
 
+library ieee_proposed;
+use ieee_proposed.float_pkg.all;
+
 entity mult_tb is
 end mult_tb;
 
@@ -16,8 +19,8 @@ architecture behave of mult_tb is
     signal r_B      : t_in_mat := (others => (others => (others => '0')));
     signal w_RESULT : t_out_mat := (others => (others => (others => '0')));
 
-    signal x        : unsigned (15 downto 0) := (others => '0');
-    signal y        : unsigned (31 downto 0) := (others => '0');
+    signal x        : float32 := (others => '0');
+    signal y        : float32 := (others => '0');
 
 begin
 
